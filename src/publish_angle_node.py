@@ -101,11 +101,9 @@ with mp_hands.Hands(
         else:  
             if handedness == 'Left':
                 #left hand just publishes angle
-                print(last_reading)
                 angle_publisher.publish(last_reading)
             else:
                 #right hand publishes negative angle since it is mirrored
-                print(-last_reading)
                 angle_publisher.publish(-last_reading)
 
     cv2.imshow('MediaPipe Hands', image)
