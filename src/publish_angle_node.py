@@ -1,3 +1,21 @@
+#/usr/bin/python3
+
+#----------------------------------------------------
+#
+#       parses input arguments
+#       The only requirement is the webcam id
+#
+#----------------------------------------------------
+
+import argparse
+parser = argparse.ArgumentParser()
+
+parser.add_argument("webcam_id", type=int,
+                    help="The number of the webcam device to open. It should be an integer (0 is the laptop's built-in webcam).")
+
+args = parser.parse_args()
+
+
 import cv2
 import numpy as np
 from numpy.lib.function_base import angle
@@ -41,7 +59,8 @@ r = rospy.Rate(50) # 50hz
 
 
 # For webcam input:
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(args.webcam_id)
+
 with mp_hands.Hands(
     min_detection_confidence=0.7,
     min_tracking_confidence=0.7,
